@@ -30,7 +30,7 @@ class Validator {
     if (emptyResult != null) {
       return emptyResult;
     } else if (!regExp.hasMatch(value)) {
-      return 'Not a valid email address. Should be your@email.com';
+      return 'Not a valid email address';
     } else {
       return null;
     }

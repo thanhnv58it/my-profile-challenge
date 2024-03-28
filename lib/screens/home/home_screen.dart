@@ -8,7 +8,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:my_profile/config/theme.dart';
-import 'package:my_profile/presentation/features/authentication/authentication_bloc.dart';
+import 'package:my_profile/blocs/authentication/authentication_bloc.dart';
 
 import '../edit/edit_screen.dart';
 

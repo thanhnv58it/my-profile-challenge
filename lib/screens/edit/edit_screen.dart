@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/independent/custom_button.dart';
+import '../../config/theme.dart';
+import '../widgets/custom_button.dart';
 
 class EditScreen extends StatefulWidget {
   final String title;
@@ -46,13 +47,19 @@ class EditScreenState extends State<EditScreen> {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Edit Information'),
+          title: Text(
+            'Edit Information ✏️',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          elevation: 1,
         ),
+        backgroundColor: AppColors.background,
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(24.0),
             child: Column(
               children: [
+                const SizedBox(height: 24.0),
                 TextField(
                   controller: _controller,
                   maxLines: null, // Allow multiple lines

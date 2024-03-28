@@ -1,12 +1,11 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart' as http;
 
 import 'exceptions.dart';
 
 class NetworkRequest {
   static const STATUS_OK = 200;
-
-  final Map<String, String> _jsonHeaders = {'content-type': 'application/json'};
 
   final http.Client client;
   final RequestType type;
@@ -24,12 +23,11 @@ class NetworkRequest {
       required this.headers});
 
   Future<http.Response> getResult() async {
-    print('ADDRESS: $address');
-    print('listBody: ${jsonEncode(listBody)}');
-    print('plainBody: $plainBody');
-    print('body: ${jsonEncode(body)}');
+    log('ADDRESS: $address');
+    log('listBody: ${jsonEncode(listBody)}');
+    log('plainBody: $plainBody');
+    log('body: ${jsonEncode(body)}');
     http.Response response;
-    headers ??= _jsonHeaders;
     try {
       Uri uri = address; //Uri.parse(address);
       switch (type) {
@@ -37,21 +35,20 @@ class NetworkRequest {
           response = await client.post(
             uri,
             headers: headers,
-            body: jsonEncode(body) ?? plainBody ?? listBody,
+            body: jsonEncode(body),
           );
           break;
         case RequestType.get:
           response = await client.get(uri, headers: headers);
           break;
         case RequestType.put:
-          response = await client.put(uri,
-              body: body ?? plainBody ?? listBody, headers: headers);
+          response = await client.put(uri, body: body, headers: headers);
           break;
         case RequestType.delete:
           response = await client.delete(uri, headers: headers);
           break;
       }
-      print('RESULT: ${response.body}');
+      log('RESULT: ${response.body}');
       if (response.statusCode != STATUS_OK) {
         throw HttpRequestException();
       }

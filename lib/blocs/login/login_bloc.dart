@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:my_profile/data/model/app_user.dart';
-import 'package:my_profile/data/repositories/abstract/user_repository.dart';
-import 'package:my_profile/presentation/features/authentication/authentication_bloc.dart';
+import 'package:my_profile/services/model/app_user.dart';
+import 'package:my_profile/services/repositories/abstract/user_repository.dart';
+import 'package:my_profile/blocs/authentication/authentication_bloc.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:my_profile/blocs/login/login_bloc.dart';
 import 'package:my_profile/config/theme.dart';
-import 'package:my_profile/presentation/features/login/login_bloc.dart';
-import 'package:my_profile/presentation/widgets/independent/custom_button.dart';
-import 'package:my_profile/presentation/widgets/independent/error_dialog.dart';
-import 'package:my_profile/presentation/widgets/independent/input_field.dart';
+import 'package:my_profile/screens/widgets/custom_button.dart';
+import 'package:my_profile/screens/widgets/error_dialog.dart';
+import 'package:my_profile/screens/widgets/basic_textfield.dart';
 import 'package:lottie/lottie.dart';
+import 'package:my_profile/utils/validator.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -71,15 +72,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     labelText: 'Enter your Username',
                     isSecure: false,
                     keyboardType: TextInputType.emailAddress,
-                    hintText: 'abc@xyz.com',
+                    hintText: 'your@email.com',
                     prefixIcon: const Icon(Icons.person),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Email cannot be empty';
-                      } else if (!value.contains('@') || !value.contains('.')) {
-                        return 'Invalid email format';
+                      } else {
+                        return Validator.validateEmail(value);
                       }
-                      return null;
                     },
                   ),
                   BasicTextField(
@@ -99,23 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       return null;
                     },
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      children: [
-                        Checkbox(
-                          value:
-                              rememberMe, // Change this to your desired value
-                          onChanged: (newValue) {
-                            setState(() {
-                              rememberMe = newValue ?? false;
-                            });
-                          },
-                        ),
-                        const Text('Remember me'),
-                      ],
-                    ),
-                  ),
+                  _buildRememberMeWidget(),
                   const SizedBox(
                     height: 24,
                   ),
@@ -126,6 +110,25 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildRememberMeWidget() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Row(
+        children: [
+          Checkbox(
+            value: rememberMe,
+            onChanged: (newValue) {
+              setState(() {
+                rememberMe = newValue ?? false;
+              });
+            },
+          ),
+          const Text('Remember me'),
+        ],
       ),
     );
   }

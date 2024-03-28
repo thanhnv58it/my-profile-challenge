@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:lottie/lottie.dart';
-import 'package:my_profile/data/repositories/abstract/user_repository.dart';
-import 'package:my_profile/presentation/features/authentication/authentication_bloc.dart';
-import 'package:my_profile/presentation/features/login/login_bloc.dart';
-import 'package:my_profile/presentation/features/login/login_screen.dart';
-import 'package:my_profile/presentation/features/home/home_screen.dart';
-import 'package:my_profile/presentation/features/splash_screen.dart';
+import 'package:my_profile/blocs/login/login_bloc.dart';
+import 'package:my_profile/services/repositories/abstract/user_repository.dart';
+import 'package:my_profile/blocs/authentication/authentication_bloc.dart';
+import 'package:my_profile/screens/login/login_screen.dart';
+import 'package:my_profile/screens/home/home_screen.dart';
+import 'package:my_profile/screens/splash/splash_screen.dart';
 import 'locator.dart' as service_locator;
 import 'package:get_it/get_it.dart';
 

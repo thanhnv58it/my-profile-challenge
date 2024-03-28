@@ -1,4 +1,4 @@
-import 'package:my_profile/data/model/app_user.dart';
+import 'package:my_profile/services/model/app_user.dart';
 
 abstract class UserRepository {
   /// Sign in with [email] and [password] and return

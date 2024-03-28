@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:my_profile/data/model/app_user.dart';
-import 'package:my_profile/data/repositories/abstract/user_repository.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:my_profile/config/storage.dart';
+import 'package:my_profile/services/model/app_user.dart';
+import 'package:my_profile/services/repositories/abstract/user_repository.dart';
 
 class UserRepositoryImpl extends UserRepository {
-  final secureStorage = const FlutterSecureStorage();
+  final secureStorage = Storage().secureStorage;
   static const userDataKey = 'kUserData';
   @override
   Future<AppUser> saveUserData({
